@@ -23,10 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-im@oxsbb#ae^1zis#eqz**pool!eh_)8b(s9^o@it_2i_^o=c)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+# 접속 가능 도메인
+ALLOWED_HOSTS = ['*']
+# CSRF 검증없이 신뢰 가능한 도메인
+# CSRF_TRUSTED_ORIGINS = ['']
+# ECS 에서 접근하는 요청 허용
+ALLOWED_CIDR_NETS = ['172.17.0.0/16']
 
 # Application definition
 
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type

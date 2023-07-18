@@ -1,8 +1,8 @@
 # 파이썬 빌드중 bookworm 선택
-FROM python:3.10-bookworm
+FROM --platform=linux/amd64 python:3.10-bookworm
 
 # 권장
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONDONTWRITEBYTECODE=1
 # 디버깅
 ENV PYTHONUNBUFFERED 1
 
