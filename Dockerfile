@@ -12,6 +12,7 @@ WORKDIR /django
 # 의존성 문서 복사
 COPY requirements.txt /django/
 
+
 # 필요한 의존성 설치
 RUN pip3 install -r requirements.txt
 
@@ -19,7 +20,7 @@ RUN pip3 install -r requirements.txt
 COPY . .
 
 # gunicorn 으로 서버 실행. <master-app> 이름 변경 필요
-CMD ["gunicorn docker_django.wsgi:application --bind 0.0.0.0:8000"]
+# CMD gunicorn docker_django.wsgi:application --bind 0.0.0.0:8000
 
 # 포트 열기
 EXPOSE 8000
